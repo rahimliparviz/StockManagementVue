@@ -1,10 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
+import addCategory from '../views/category/create'
+import category from '../views/category/list'
+import editCategory from '../views/category/edit'
 import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
-
+//todo delete this when start authentication
+// const ifAuthenticated =true;
 const routes = [
+
+  //  // Category Routes
+  { path: '/add-category', component: addCategory, name:'add-category'},
+  { path: '/categories', component: category, name:'categories'},
+  { path: '/edit-category/:id', component: editCategory, name:'edit-category'},
+
   {
     path: "/",
     name: "Home",
