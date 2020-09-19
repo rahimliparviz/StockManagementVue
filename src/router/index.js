@@ -22,9 +22,9 @@ import editProduct from '../views/product/edit'
 // import expense from '../views/expense/list'
 // import editExpense from '../views/expense/edit'
 
-// import addCustomer from '../views/customer/create'
-// import customer from '../views/customer/list'
-// import editCustomer from '../views/customer/edit'
+import addCustomer from '../views/customer/create'
+import customer from '../views/customer/list'
+import editCustomer from '../views/customer/edit'
 
 // import salary from '../views/salary/all_employee.vue'
 // import paySalary from '../views/salary/create.vue'
@@ -61,6 +61,11 @@ const routes = [
   { path: '/categories', component: category, name:'categories'},
   { path: '/edit-category/:id', component: editCategory, name:'edit-category'},
 
+//     { path: '/add-category', component: addCategory, name:'add-category',beforeEnter:ifAuthenticated},
+//     { path: '/categories', component: category, name:'categories',beforeEnter:ifAuthenticated},
+//     { path: '/edit-category/:id', component: editCategory, name:'edit-category',beforeEnter:ifAuthenticated},
+
+
 
 //     // Employee Routes
 //     {path:'/add-employee',component:addEmployee,name:'add-employee',beforeEnter:ifAuthenticated},
@@ -76,10 +81,6 @@ const routes = [
     { path: '/suppliers', component: suppliers, name:'suppliers'},
     { path: '/edit-supplier/:id', component: editSupplier, name:'edit-supplier'},
 
-// //  // Category Routes
-//     { path: '/add-category', component: addCategory, name:'add-category',beforeEnter:ifAuthenticated},
-//     { path: '/categories', component: category, name:'categories',beforeEnter:ifAuthenticated},
-//     { path: '/edit-category/:id', component: editCategory, name:'edit-category',beforeEnter:ifAuthenticated},
 
     // Product Routes
     { path: '/add-product', component: addProduct, name:'add-product'},
@@ -92,6 +93,11 @@ const routes = [
     // { path: '/edit-expense/:id', component: editExpense, name:'edit-expense',beforeEnter:ifAuthenticated},
 
     // // Customer Routes
+   { path: '/add-customer', component: addCustomer, name:'add-customer'},
+    { path: '/customers', component: customer, name:'customers'},
+    { path: '/edit-customer/:id', component: editCustomer, name:'edit-customer'},
+
+
     // { path: '/add-customer', component: addCustomer, name:'add-customer',beforeEnter:ifAuthenticated},
     // { path: '/customers', component: customer, name:'customers',beforeEnter:ifAuthenticated},
     // { path: '/edit-customer/:id', component: editCustomer, name:'edit-customer',beforeEnter:ifAuthenticated},

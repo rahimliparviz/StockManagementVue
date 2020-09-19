@@ -179,7 +179,7 @@
 
                 let file = event.target.files[0];
                 if (file.size > 1048770) {
-                    Notification.image_validation()
+                   this.$notificationimage_validation()
                 } else {
                     let reader = new FileReader();
                     reader.onload = event => {
@@ -189,10 +189,10 @@
                 }
             },
             employeeInsert() {
-                agent.Employee.create(this.form)
+               this.$agent.Employee.create(this.form)
                     .then(() => {
                         this.$router.push({name: 'employees'})
-                        Notification.success()
+                       this.$notificationsuccess()
                     })
                     .catch(error => {
                         this.errors = error.data.errors

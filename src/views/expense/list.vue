@@ -83,12 +83,12 @@
 
         methods: {
             allExpense() {
-                agent.Expense.list()
+               this.$agent.Expense.list()
                     .then((data) => (this.expenses = data))
                     .catch()
             },
             deleteExpense(id) {
-                Swal.fire({
+                this.$swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
@@ -98,7 +98,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.value) {
-                        agent.Expense.delete(id)
+                       this.$agent.Expense.delete(id)
                             .then(() => {
                                 this.expenses = this.expenses.filter(expense => {
                                     return expense.id != id
@@ -107,7 +107,7 @@
                             .catch(() => {
                                 this.$router.push({name: 'expense'})
                             })
-                        Swal.fire(
+                        this.$swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
                             'success'

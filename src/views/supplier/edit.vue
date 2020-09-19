@@ -139,7 +139,6 @@ export default {
         shopName: "",
         address: "",
         photo: "",
-        isPhotoChanged: false
       },
       uploadedPhoto: null,
       selectedFile:null,

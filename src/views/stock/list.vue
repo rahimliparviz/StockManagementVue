@@ -90,7 +90,7 @@
 
   methods:{
     allProduct(){
-        agent.Product.list()
+       this.$agent.Product.list()
       // axios.get('/api/product/')
       .then((data) => {
           // console.log(data)

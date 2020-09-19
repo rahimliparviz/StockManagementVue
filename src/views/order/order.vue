@@ -81,7 +81,7 @@
 
         methods: {
             allOrder() {
-                agent.Order.list()
+               this.$agent.Order.list()
                     .then((data) => (this.orders = data))
                     .catch()
             },

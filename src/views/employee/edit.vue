@@ -180,7 +180,7 @@
 
 
             let id = this.$route.params.id
-            agent.Employee.details(id)
+           this.$agent.Employee.details(id)
                 .then((data) => {
                     this.form = data
                 })
@@ -190,7 +190,7 @@
             onFileSelected(event) {
                 let file = event.target.files[0];
                 if (file.size > 1048770) {
-                    Notification.image_validation()
+                   this.$notificationimage_validation()
                 } else {
                     let reader = new FileReader();
                     reader.onload = event => {
@@ -202,10 +202,10 @@
                 }
             },
             employeeUpdate() {
-                agent.Employee.update(this.form)
+               this.$agent.Employee.update(this.form)
                     .then(() => {
                         this.$router.push({name: 'employees'})
-                        Notification.success()
+                       this.$notificationsuccess()
                     })
                     .catch(error => this.errors = error.data.errors)
             },

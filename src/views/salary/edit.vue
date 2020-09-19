@@ -133,7 +133,7 @@
   },
   created(){
   	let id = this.$route.params.id
-     agent.Salary.edit(id)
+    this.$agent.Salary.edit(id)
   	// axios.get('/api/edit/salary/'+id)
   	.then((data) => (this.form = data))
   	.catch(console.log('error'))
@@ -144,11 +144,11 @@
   SalaryUpdate(){
   	  let id = this.$route.params.id
 
-      agent.Salary.update(this.form)
+     this.$agent.Salary.update(this.form)
        // axios.post('/api/salary/update/'+id,this.form)
        .then(() => {
         this.$router.push({ name: 'salary'})
-        Notification.success()
+       this.$notificationsuccess()
        })
        .catch(error =>this.errors = error.response.data.errors)
      },

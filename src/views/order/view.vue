@@ -146,7 +146,7 @@
             }
         },
         created() {
-            agent.Order.order(this.$route.params.id)
+           this.$agent.Order.order(this.$route.params.id)
                 .then((data) => {
                     (this.order = data)
                 })

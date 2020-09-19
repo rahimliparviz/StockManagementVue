@@ -85,7 +85,7 @@
   },
   created(){
   	let id = this.$route.params.id
-    agent.Product.details(id)
+   this.$agent.Product.details(id)
   	.then((data) => (this.form = data))
   	.catch(console.log('error'))
 
@@ -96,10 +96,10 @@
 
   StockUpdate(){
   	  let id = this.$route.params.id
-      agent.Stock.update(this.form)
+     this.$agent.Stock.update(this.form)
        .then(() => {
         this.$router.push({ name: 'stock'})
-        Notification.success()
+       this.$notificationsuccess()
        })
        .catch(error =>this.errors = error.data.errors)
      },

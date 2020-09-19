@@ -72,7 +72,7 @@ const Employee = {
     list: () => requests.get(`/employees`),
     details: (id) => requests.get(`/employees/${id}`),
     create: (employee) => requests.post('/employees', employee),
-    update: (employee) =>requests.put(`/employees/${employee.id}`, employee),
+    update: (formData) =>requests.put(`/employees/${formData.get('id')}`, formData),
     delete: (id) => requests.del(`/employees/${id}`),
   };
 
@@ -112,7 +112,7 @@ const Employee = {
     list: () => requests.get(`/customers`),
     details: (id) => requests.get(`/customers/${id}`),
     create: (customer) => requests.post('/customers', customer),
-    update: (customer) =>requests.put(`/customers/${customer.id}`, customer),
+    update: (formData) =>requests.put(`/customers/${formData.get('id')}`, formData),
     delete: (id) => requests.del(`/customers/${id}`),
   };
 

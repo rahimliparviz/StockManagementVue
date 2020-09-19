@@ -90,10 +90,10 @@
 
         methods: {
             expenseInsert() {
-                agent.Expense.create(this.form)
+               this.$agent.Expense.create(this.form)
                     .then(() => {
                         this.$router.push({name: 'expense'})
-                        Notification.success()
+                       this.$notificationsuccess()
                     })
                     .catch(error => this.errors = error.data.errors)
             },

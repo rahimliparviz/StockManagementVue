@@ -86,7 +86,7 @@
   methods:{
     viewSalary(){
      let id = this.$route.params.id
-        agent.Salary.view(id)
+       this.$agent.Salary.view(id)
        // axios.get('/api/salary/view/'+id)
        .then((data) => (this.salaries = data))
        .catch(error =>this.errors = error.data.errors)

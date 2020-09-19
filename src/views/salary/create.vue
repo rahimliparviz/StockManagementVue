@@ -131,7 +131,7 @@
   created(){
     let id = this.$route.params.id
     // this.employeeId = id;
-    agent.Employee.details(id)
+   this.$agent.Employee.details(id)
   	// axios.get('/api/employee/'+id)
   	.then((data) => (this.form = data))
   	.catch(console.log('error'))
@@ -141,11 +141,11 @@
 
   SalaryPaid(){
       console.log(this.form)
-      agent.Salary.pay(this.form)
+     this.$agent.Salary.pay(this.form)
       //  axios.post('/api/salary/paid/'+id,this.form)
        .then(() => {
         this.$router.push({ name: 'given-salary'})
-        Notification.success()
+       this.$notificationsuccess()
        })
        .catch(error =>this.errors = error.data.errors)
      },

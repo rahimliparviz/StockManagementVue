@@ -79,7 +79,7 @@
 
   methods:{
     allSalary(){
-      agent.Salary.list()
+     this.$agent.Salary.list()
       // axios.get('/api/salary/')
       .then((data) => (this.salaries = data))
       .catch()

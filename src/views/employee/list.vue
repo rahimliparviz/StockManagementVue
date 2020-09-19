@@ -87,14 +87,14 @@
 
         methods: {
             allEmployee() {
-                agent.Employee.list()
+               this.$agent.Employee.list()
                     .then((data) => {
                         this.employees = data
                     })
                     .catch()
             },
             deleteEmployee(id) {
-                Swal.fire({
+                this.$swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
@@ -104,7 +104,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.value) {
-                        agent.Employee.delete(id)
+                       this.$agent.Employee.delete(id)
                             // axios.delete('/api/employee/'+id)
                             .then(() => {
                                 this.employees = this.employees.filter(employee => {
@@ -114,7 +114,7 @@
                             .catch(() => {
                                 this.$router.push({name: 'employees'})
                             })
-                        Swal.fire(
+                        this.$swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
                             'success'

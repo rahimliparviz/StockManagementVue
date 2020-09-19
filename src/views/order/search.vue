@@ -119,7 +119,7 @@
 
             searchDate() {
 
-                agent.Order.list({date: this.date})
+               this.$agent.Order.list({date: this.date})
 
                     .then((data) => (this.orders = data))
                     .catch(error => this.errors = error.data.errors)

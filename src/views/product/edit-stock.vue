@@ -92,7 +92,7 @@
        axios.post('/api/stock/update/'+id,this.form)
        .then(() => {
         this.$router.push({ name: 'stock'})
-        Notification.success()
+       this.$notificationsuccess()
        })
        .catch(error =>this.errors = error.response.data.errors)
      },

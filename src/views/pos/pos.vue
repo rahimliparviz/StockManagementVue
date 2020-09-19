@@ -284,10 +284,10 @@
             addToCart(product) {
 
                 if (this.orderProducts.some(p => p.id == product.id)) {
-                    Notification.itemExist("Product")
+                   this.$notificationitemExist("Product")
                 }
                 else if(product.product_quantity == 0){
-                    Notification.stockOutForProduct(product.product_name)
+                   this.$notificationstockOutForProduct(product.product_name)
                 }
                 else{
                     product.selected_quantity = 0;
@@ -331,7 +331,7 @@
                 }
             },
             getVat() {
-                agent.Regulations.get()
+               this.$agent.Regulations.get()
                     .then((regulation) => {
                         (this.vat = regulation.vat)
                     })
@@ -351,17 +351,17 @@
                 }
                 console.log(this.orderProducts.length,this.orderProducts,this.orderProducts.length < 1)
                 if (this.orderProducts.length < 1){
-                    Notification.warning('You have to select at least on product')
+                   this.$notificationwarning('You have to select at least on product')
 
                 }else {
 
-                    agent.Order.submitOrder(data)
+                   this.$agent.Order.submitOrder(data)
                         .then((res) => {
                             if (res.status == 'success') {
                                 this.resetData();
-                                Notification.success()
+                               this.$notificationsuccess()
                             } else {
-                                Notification.warning()
+                               this.$notificationwarning()
                             }
 
                         })
@@ -384,19 +384,19 @@
 
             // End Cart Methods
             allProduct() {
-                agent.Product.list()
+               this.$agent.Product.list()
 
                     .then((data) => (this.products = data))
                     .catch()
             },
             allCategory() {
-                agent.Category.list()
+               this.$agent.Category.list()
 
                     .then((data) => (this.categories = data))
                     .catch()
             },
             allCustomer() {
-                agent.Customer.list()
+               this.$agent.Customer.list()
                     .then((data) => (this.customers = data))
                     .catch((e)=>console.log(e))
             },

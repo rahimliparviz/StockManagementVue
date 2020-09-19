@@ -72,7 +72,7 @@
     export default {
         created() {
             let id = this.$route.params.id
-            agent.Expense.details(id)
+           this.$agent.Expense.details(id)
                 .then((data) => (this.form = data))
                 .catch(console.log('error'))
 
@@ -91,10 +91,10 @@
         methods: {
 
             expenseUpdate() {
-                agent.Expense.update(this.form)
+               this.$agent.Expense.update(this.form)
                     .then(() => {
                         this.$router.push({name: 'expenses'})
-                        Notification.success()
+                       this.$notificationsuccess()
                     })
                     .catch(error => this.errors = error.data.errors)
             },

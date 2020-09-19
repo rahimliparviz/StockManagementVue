@@ -86,7 +86,7 @@
 
   methods:{
     allEmployee(){
-      agent.Employee.list()
+     this.$agent.Employee.list()
       .then((data) => (this.employees = data))
       .catch()
     },
