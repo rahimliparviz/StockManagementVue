@@ -18,9 +18,9 @@ import addProduct from '../views/product/create'
 import product from '../views/product/list'
 import editProduct from '../views/product/edit'
 
-// import addExpense from '../views/expense/create'
-// import expense from '../views/expense/list'
-// import editExpense from '../views/expense/edit'
+import addExpense from '../views/expense/create'
+import expense from '../views/expense/list'
+import editExpense from '../views/expense/edit'
 
 import addCustomer from '../views/customer/create'
 import customer from '../views/customer/list'
@@ -88,6 +88,11 @@ const routes = [
     { path: '/edit-product/:id', component: editProduct, name:'edit-product'},
 
     // // Expense Routes
+    { path: '/add-expense', component: addExpense, name:'add-expense'},
+    { path: '/expenses', component: expense, name:'expenses'},
+    { path: '/edit-expense/:id', component: editExpense, name:'edit-expense'},
+
+
     // { path: '/add-expense', component: addExpense, name:'add-expense',beforeEnter:ifAuthenticated},
     // { path: '/expenses', component: expense, name:'expenses',beforeEnter:ifAuthenticated},
     // { path: '/edit-expense/:id', component: editExpense, name:'edit-expense',beforeEnter:ifAuthenticated},
