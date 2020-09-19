@@ -13,8 +13,8 @@ import notification from './helpers/Notification'
 Vue.config.productionTip = false;
 
 
-
 //Global variables
+Vue.prototype.$api_url=process.env.VUE_APP_API_URL
 Vue.prototype.$agent = agent
 Vue.prototype.$swal = swal
 Vue.prototype.$notification=notification
@@ -36,6 +36,8 @@ window.baseUrl = window.location.origin;
  });
 
  window.Toast = Toast;
+
+ Vue.use(require('vue-moment'));
 
 //Global components
 Vue.component("sidebar", sideBar);

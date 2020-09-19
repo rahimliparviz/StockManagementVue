@@ -114,6 +114,7 @@
             }
         },
         created() {  
+
             this.allCategories();
         }
 

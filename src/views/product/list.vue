@@ -29,19 +29,19 @@
                         <th>Category</th>
                         <th>Buying Price</th>
                         <th>Selling Price</th>
-                        <th>Root</th>
+                        <th>Buging date</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr v-for="product in searchFilter" :key="product.id">
-                        <td> {{ product.product_name }} </td>
-                        <td> {{ product.product_code }} </td>
-                        <td><img :src="product.photo" id="photo"></td>
-                        <td>{{ product.category_name }}</td>
-                        <td>{{ product.buying_price }}</td>
-                        <td>{{ product.selling_price }}</td>
-                         <td>{{ product.root }}</td>
+                        <td> {{ product.name }} </td>
+                        <td> {{ product.code }} </td>
+                        <td><img :src="$api_url+product.photo" id="photo"></td>
+                        <td>{{ product.categoryName }}</td>
+                        <td>{{ product.buyingPrice }}</td>
+                        <td>{{ product.selingPrice }}</td>
+                         <td>{{ product.buyingDate | moment("MM-DD-YYYY") }}</td>
             <td>
    <router-link :to="{name: 'edit-product', params:{id:product.id}}" class="btn btn-sm btn-primary">Edit</router-link>
 
@@ -83,20 +83,25 @@
     },
     computed:{
       searchFilter(){
+
+        // let a = this.products.map(p=>p.photo= process.env.VUE_APP_API_URL+p.photo);
+        // console.log(a)
       return this.products.filter(product => {
-         return product.product_name.match(this.searchTerm)
+         return product.name.match(this.searchTerm)
       })
       }
     },
 
   methods:{
     allProduct(){
-      agent.Product.list()
-      .then((data) => (this.products = data))
+      this.$agent.Product.list()
+      .then((data) => {
+        this.products = data
+        })
       .catch()
     },
   deleteProduct(id){
-             Swal.fire({
+             this.$swal.fire({
               title: 'Are you sure?',
               text: "You won't be able to revert this!",
               icon: 'warning',
@@ -106,7 +111,7 @@
               confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
               if (result.value) {
-              agent.Product.delete(id)
+              this.$agent.Product.delete(id)
                .then(() => {
                 this.products = this.products.filter(product => {
                   return product.id != id
@@ -115,7 +120,7 @@
                .catch(() => {
                 this.$router.push({name: 'product'})
                })
-                Swal.fire(
+                this.$swal.fire(
                   'Deleted!',
                   'Your file has been deleted.',
                   'success'

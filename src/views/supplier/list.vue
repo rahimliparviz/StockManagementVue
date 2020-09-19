@@ -34,9 +34,9 @@
                     <tbody>
                       <tr v-for="supplier in searchFilter" :key="supplier.id">
                         <td> {{ supplier.name }} </td>
-                        <td><img :src="supplier.photo" id="photo"></td>
+                        <td><img :src="$api_url + supplier.photo" id="photo"></td>
                         <td>{{ supplier.phone }}</td>
-                        <td>{{ supplier.shop_name }}</td>
+                        <td>{{ supplier.shopName }}</td>
                         <td>{{ supplier.email }}</td>
             <td>
    <router-link :to="{name: 'edit-supplier', params:{id:supplier.id}}" class="btn btn-sm btn-primary">Edit</router-link>
@@ -84,14 +84,16 @@
 
   methods:{
     allSupplier(){
-      agent.Supplier.list()
+      this.$agent.Supplier.list()
       .then((data) => {
+        console.log(data)
         this.suppliers = data
       })
       .catch()
     },
+
   deleteSupplier(id){
-             Swal.fire({
+             this.$swal.fire({
               title: 'Are you sure?',
               text: "You won't be able to revert this!",
               icon: 'warning',
@@ -101,7 +103,7 @@
               confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
               if (result.value) {
-                agent.Supplier.delete(id)
+                this.$agent.Supplier.delete(id)
                .then(() => {
                 this.suppliers = this.suppliers.filter(supplier => {
                   return supplier.id != id
@@ -110,7 +112,7 @@
                .catch(() => {
                 this.$router.push({name: 'suppliers'})
                })
-                Swal.fire(
+                this.$swal.fire(
                   'Deleted!',
                   'Your file has been deleted.',
                   'success'

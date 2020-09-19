@@ -59,6 +59,13 @@ const requests = {
     post: (url,body)=> axios.post(url,body).then(responseBody),
     put: (url,body)=> axios.put(url,body).then(responseBody),
     del: (url)=> axios.delete(url).then(responseBody),
+    postForm: (url, file) => {
+        let formData = new FormData();
+        formData.append('File', file);
+        return axios.post(url, formData, {
+            headers: {'Content-type': 'multipart/form-data'}
+        }).then(responseBody)
+    }
 }
 
 const Employee = {
@@ -73,7 +80,7 @@ const Employee = {
     list: () => requests.get(`/suppliers`),
     details: (id) => requests.get(`/suppliers/${id}`),
     create: (supplier) => requests.post('/suppliers', supplier),
-    update: (supplier) =>requests.put(`/suppliers/${supplier.id}`, supplier),
+    update: (formData) =>requests.put(`/suppliers/${formData.get('id')}`, formData),
     delete: (id) => requests.del(`/suppliers/${id}`),
   };
 
@@ -89,7 +96,7 @@ const Employee = {
     list: () => requests.get(`/products`),
     details: (id) => requests.get(`/products/${id}`),
     create: (product) => requests.post('/products', product),
-    update: (product) =>requests.put(`/products/${product.id}`, product),
+    update: (formData) =>requests.put(`/products/${formData.get('id')}`, formData),
     delete: (id) => requests.del(`/products/${id}`),
   };
 

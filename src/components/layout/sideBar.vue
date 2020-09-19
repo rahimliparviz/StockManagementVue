@@ -185,7 +185,7 @@
     export default {
         data() {
             return {
-                baseUrl: baseUrl,
+                baseUrl: window.baseUrl,
             };
         }
     }
