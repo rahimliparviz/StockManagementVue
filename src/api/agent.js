@@ -125,7 +125,7 @@ const Employee = {
   };
 
   const Stock = {
-      update: (data) => requests.post(`/stock/update/${data.id}`,data),
+      update: (data) => requests.post(`/products/stock-update/${data.id}`,data),
   };
 
     const Reports = {

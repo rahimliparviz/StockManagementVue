@@ -33,8 +33,8 @@ import editCustomer from '../views/customer/edit'
 // import editSalary from '../views/salary/edit.vue'
 
 
-// import stock from '../views/stock/list'
-// import editStock from '../views/stock/edit'
+import stock from '../views/stock/list'
+import editStock from '../views/stock/edit'
 
 // import pos from '../views/pos/pos'
 
@@ -116,6 +116,9 @@ const routes = [
     // { path: '/edit-salary/:id', component: editSalary, name:'edit-salary',beforeEnter:ifAuthenticated},
 
     // // Stock Routes
+      { path: '/stock', component: stock, name:'stock'},
+      { path: '/edit-stock/:id', component: editStock, name:'edit-stock'},
+
     // { path: '/stock', component: stock, name:'stock',beforeEnter:ifAuthenticated},
     // { path: '/edit-stock/:id', component: editStock, name:'edit-stock',beforeEnter:ifAuthenticated},
 
