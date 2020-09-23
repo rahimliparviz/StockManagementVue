@@ -1,15 +1,10 @@
 
 
 <template>
-
   <div>
-
- <div class="row">
-  <router-link to="/salaries" class="btn btn-primary">Go Back </router-link>
-
- </div>
-
-
+    <div class="row">
+      <router-link to="/salaries" class="btn btn-primary">Go Back</router-link>
+    </div>
 
     <div class="row justify-content-center">
       <div class="col-xl-12 col-lg-12 col-md-12">
@@ -19,85 +14,67 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Update Salary </h1>
+                    <h1 class="h4 text-gray-900 mb-4">Update Salary</h1>
                   </div>
 
-      <form class="user" @submit.prevent="SalaryUpdate">
+                  <form class="user" @submit.prevent="salaryUpdate">
+                
+                    <div class="form-group">
+                      <div class="form-row">
+                        <div class="col-md-6">
+                          <label for="exampleFormControlSelect1">
+                            <b>Months</b>
+                          </label>
 
-        <div class="form-group">
+                          <select
+                            class="form-control"
+                            id="exampleFormControlSelect1"
+                            v-model="form.month"
+                          >
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">Jun</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                          </select>
+                          <small
+                            class="text-danger"
+                            v-if="errors.month"
+                          >{{ errors.month[0] }}</small>
+                        </div>
 
-          <div class="form-row">
-            <div class="col-md-6">
-            	<label for="exampleFormControlSelect1"><b>Name</b></label>
-         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Full Name" v-model="form.name">
-       <small class="text-danger" v-if="errors.name"> {{ errors.name[0] }} </small>
-            </div>
+                        <input type="hidden" v-model="form.employeeId" />
 
+                        <div class="col-md-6">
+                          <label for="exampleFormControlSelect1">
+                            <b>Amount</b>
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                             
+                            placeholder="Enter Your Salary"
+                            v-model="form.amount"
+                          />
+                          <small class="text-danger" v-if="errors.amount">{{ errors.amount[0] }}</small>
+                        </div>
+                      </div>
+                    </div>
 
-     <div class="col-md-6">
-     	<label for="exampleFormControlSelect1"><b>Email</b></label>
-         <input type="email" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Email" v-model="form.email">
-         <small class="text-danger" v-if="errors.email"> {{ errors.email[0] }} </small>
-            </div>
-
-          </div>
-        </div>
-
-
-         <div class="form-group">
-
-          <div class="form-row">
-            <div class="col-md-6">
-      <label for="exampleFormControlSelect1"><b>Months</b></label>
-
-  <select class="form-control" id="exampleFormControlSelect1" v-model="form.salary_month">
-     <option value="January"> January </option>
-     <option value="February"> February </option>
-     <option value="March"> March </option>
-     <option value="April"> April </option>
-     <option value="May"> May </option>
-     <option value="Jun"> Jun </option>
-     <option value="July"> July </option>
-     <option value="August"> August </option>
-     <option value="September"> September </option>
-     <option value="October"> October </option>
-     <option value="November"> November </option>
-     <option value="December"> December </option>
-
-
-                      </select>
-   <small class="text-danger" v-if="errors.salary_month"> {{ errors.salary_month[0] }} </small>
-            </div>
-
-  <input type="hidden" v-model="form.employee_id" >
-
-     <div class="col-md-6">
-     	<label for="exampleFormControlSelect1"><b>Amount</b></label>
-         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Salary" v-model="form.amount">
-         <small class="text-danger" v-if="errors.amount"> {{ errors.amount[0] }} </small>
-            </div>
-
-          </div>
-        </div>
-
-
-
-
-
-
-
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">Update</button>
-        </div>
-
-      </form>
-                  <hr>
-                  <div class="text-center">
-
-
-                  </div>
-                  <div class="text-center">
-                  </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-block">Update</button>
+                    </div>
+                  </form>
+                  <hr />
+                  <div class="text-center"></div>
+                  <div class="text-center"></div>
                 </div>
               </div>
             </div>
@@ -106,60 +83,50 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 
 
 <script type="text/javascript">
-
-
-  export default {
-
-
-    data(){
+export default {
+  data() {
     return {
-      form:{
-        name: '',
-        email: '',
-        salary_month: '',
-        amount: '',
-        employee_id:''
-
+      form: {
+          month: "",
+          amount: "",
+          employeeId: "",
+         isUpdating:true
       },
-      errors:{}
-    }
+      errors: {}
+    };
   },
-  created(){
-  	let id = this.$route.params.id
+  created() {
+    let id = this.$route.params.id;
     this.$agent.Salary.edit(id)
-  	// axios.get('/api/edit/salary/'+id)
-  	.then((data) => (this.form = data))
-  	.catch(console.log('error'))
+      .then(data => {
+        console.log(data)
+        this.form = data
+        })
+      .catch(console.log("error"));
   },
 
-  methods:{
-
-  SalaryUpdate(){
-  	  let id = this.$route.params.id
-
-     this.$agent.Salary.update(this.form)
-       // axios.post('/api/salary/update/'+id,this.form)
-       .then(() => {
-        this.$router.push({ name: 'salary'})
-       this.$notificationsuccess()
-       })
-       .catch(error =>this.errors = error.response.data.errors)
-     },
+  methods: {
+    salaryUpdate() {
+      console.log(this.form)
+      this.$agent.Salary.update(this.form)
+        .then(() => {
+          this.$router.push({ name: "salaries" });
+          this.$notificationsuccess();
+        })
+        .catch(error => {
+          console.log(error)
+          this.errors = error.data.errors
+        });
+    }
   }
-
-
-  }
-
+};
 </script>
 
 
 <style type="text/css">
-
 </style>

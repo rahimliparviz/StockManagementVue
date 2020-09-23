@@ -117,11 +117,11 @@ const Employee = {
   };
 
   const Salary = {
-    list: () => requests.get(`/salary`),
-    pay: (data) => requests.post(`/salary/pay`,data),
-    update: (data) => requests.post(`/salary/update/${data.id}`,data),
-    edit: (id) => requests.get(`/edit/salary/${id}`),
-    view: (id) => requests.get(`/salary/view/${id}`),
+      list: () => requests.get(`/salaries`),
+    pay: (data) => requests.post(`/salaries/pay`,data),
+    update: (data) => requests.put(`/salaries/${data.id}`,data),
+    edit: (id) => requests.get(`/salaries/${id}`),
+    view: (id) => requests.get(`/salaries/monthly/${id}`),
   };
 
   const Stock = {
@@ -138,8 +138,10 @@ const Employee = {
     }
 
 const Order = {
-    list: (data) => requests.getWithParams(`/orders`,data),
-    order: (id) => requests.get(`/order/${id}`),
+    // TODO - merge list and listBydate to one request with nullable param
+    list: () => requests.get(`/orders`),
+    listByDate: (date) => requests.get(`/orders/date/${date}`),
+    order: (id) => requests.get(`/orders/${id}`),
     search:(data)=>requests.post('/search/order',data),
     submitOrder: (order) => requests.post(`/order/`,order),
 

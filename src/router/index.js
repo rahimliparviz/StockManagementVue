@@ -6,9 +6,9 @@ import category from '../views/category/list'
 import editCategory from '../views/category/edit'
 
 
-// import addEmployee from '../views/employee/create'
-// import employees from '../views/employee/list'
-// import editEmployee from '../views/employee/edit'
+import addEmployee from '../views/employee/create'
+import employees from '../views/employee/list'
+import editEmployee from '../views/employee/edit'
 
 import addSupplier from '../views/supplier/create'
 import suppliers from '../views/supplier/list'
@@ -26,21 +26,20 @@ import addCustomer from '../views/customer/create'
 import customer from '../views/customer/list'
 import editCustomer from '../views/customer/edit'
 
-// import salary from '../views/salary/all_employee.vue'
-// import paySalary from '../views/salary/create.vue'
-// import allSalary from '../views/salary/list.vue'
-// import viewSalary from '../views/salary/view.vue'
-// import editSalary from '../views/salary/edit.vue'
-
+import salary from '../views/salary/all_employee.vue'
+import paySalary from '../views/salary/create.vue'
+import allSalary from '../views/salary/list.vue'
+import viewSalary from '../views/salary/view.vue'
+import editSalary from '../views/salary/edit.vue'
 
 import stock from '../views/stock/list'
 import editStock from '../views/stock/edit'
 
-// import pos from '../views/pos/pos'
+import pos from '../views/pos/pos'
 
-// import order from '../views/order/order'
-// import viewOrder from '../views/order/view'
-// import searchOrder from '../views/order/search'
+import order from '../views/order/order'
+import viewOrder from '../views/order/view'
+import searchOrder from '../views/order/search'
 
 
 
@@ -68,6 +67,11 @@ const routes = [
 
 
 //     // Employee Routes
+    {path:'/add-employee',component:addEmployee,name:'add-employee'},
+    {path:'/employees',component:employees,name:'employees'},
+    { path: '/edit-employee/:id', component: editEmployee, name:'edit-employee'},
+
+
 //     {path:'/add-employee',component:addEmployee,name:'add-employee',beforeEnter:ifAuthenticated},
 //     {path:'/employees',component:employees,name:'employees',beforeEnter:ifAuthenticated},
 //     { path: '/edit-employee/:id', component: editEmployee, name:'edit-employee',beforeEnter:ifAuthenticated},
@@ -109,6 +113,12 @@ const routes = [
 
 
     // // Salary Routes
+     { path: '/given-salary', component: salary, name:'given-salary'},
+    { path: '/pay-salary/:id', component: paySalary, name:'pay-salary'},
+    { path: '/salaries', component: allSalary, name:'salaries'},
+    { path: '/view-salary/:id', component: viewSalary, name:'view-salary'},
+    { path: '/edit-salary/:id', component: editSalary, name:'edit-salary'},
+
     // { path: '/given-salary', component: salary, name:'given-salary',beforeEnter:ifAuthenticated},
     // { path: '/pay-salary/:id', component: paySalary, name:'pay-salary',beforeEnter:ifAuthenticated},
     // { path: '/salaries', component: allSalary, name:'salaries',beforeEnter:ifAuthenticated},
@@ -124,9 +134,15 @@ const routes = [
 
 
     // // POS Routes
+    { path: '/pos', component: pos, name:'pos'},
+
     // { path: '/pos', component: pos, name:'pos',beforeEnter:ifAuthenticated},
 
     // // Order Routes
+    { path: '/orders', component: order, name:'orders'},
+    { path: '/view-order/:id', component: viewOrder, name:'view-order'},
+    { path: '/searchorder', component: searchOrder, name:'search-order'},
+
     // { path: '/orders', component: order, name:'orders',beforeEnter:ifAuthenticated},
     // { path: '/view-order/:id', component: viewOrder, name:'view-order',beforeEnter:ifAuthenticated},
     // { path: '/searchorder', component: searchOrder, name:'search-order',beforeEnter:ifAuthenticated},
