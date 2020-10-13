@@ -8,36 +8,27 @@ import topBar from "./components/layout/topBar.vue";
 import agent from "./api/agent"
 import swal from "sweetalert2"
 import notification from './helpers/Notification'
+import Chartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
+Vue.use(Chartkick.use(Chart))
 
 
 Vue.config.productionTip = false;
 
 
 //Global variables
-Vue.prototype.$api_url=process.env.VUE_APP_API_URL
+Vue.prototype.$api_url = process.env.VUE_APP_API_URL
 Vue.prototype.$agent = agent
 Vue.prototype.$swal = swal
-Vue.prototype.$notification=notification
+Vue.prototype.$notification = notification
 window.baseUrl = window.location.origin;
 
- // Sweet Alert start
+// Sweet Alert start
 
 
- const Toast = swal.mixin({
-   toast: true,
-   position: 'top-end',
-   showConfirmButton: false,
-   timer: 3000,
-   timerProgressBar: true,
-   onOpen: (toast) => {
-     toast.addEventListener('mouseenter', swal.stopTimer)
-     toast.addEventListener('mouseleave', swal.resumeTimer)
-   }
- });
 
- window.Toast = Toast;
-
- Vue.use(require('vue-moment'));
+Vue.use(require('vue-moment'));
 
 //Global components
 Vue.component("sidebar", sideBar);

@@ -148,7 +148,6 @@ export default {
   },
   created() {
     this.$agent.Order.order(this.$route.params.id).then(data => {
-        console.log(data)
       this.order = data;
     });
   },

@@ -230,15 +230,12 @@ export default {
       fd.append('isUpdating',true)
       fd.append('id',this.form.id)
 
-console.log(this.form,this.password)
-      this.$agent.Employee.update(fd)
         .then(() => {
           this.$router.push({ name: "employees" });
           this.$notificationsuccess();
         })
         .catch(error => {
             this.errors = error.data.errors
-                        console.log(this.errors)
 
             });
     }

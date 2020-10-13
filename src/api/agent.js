@@ -40,8 +40,6 @@ axios.interceptors.response.use(undefined, error => {
       }
     // if (status === 400 && config.method === 'get' && data.errors.hasOwnProperty('id')) {
         if (status === 400 && config.method === 'get' && data.errors) {
-            console.log(data.errors)
-
         router.push('/notfound')
     }
     if (status === 500) {
@@ -143,7 +141,7 @@ const Order = {
     listByDate: (date) => requests.get(`/orders/date/${date}`),
     order: (id) => requests.get(`/orders/${id}`),
     search:(data)=>requests.post('/search/order',data),
-    submitOrder: (order) => requests.post(`/order/`,order),
+    submitOrder: (order) => requests.post(`/orders/`,order),
 
 };
 
@@ -155,7 +153,17 @@ const User = {
 }
 
 
+const Dashboard = {
+    // expenses: (user) => requests.post(`/auth/login`, user),
+    expenses: (params) =>
+        axios.get('/dashboard/expenses', { params: params }).then(responseBody),
+    orders: (params) =>
+        axios.get('/dashboard/orders', { params: params }).then(responseBody)
+}
+
+
 export default {
+    Dashboard,
     User,
     Employee,
     Supplier,

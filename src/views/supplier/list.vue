@@ -86,7 +86,6 @@
     allSupplier(){
       this.$agent.Supplier.list()
       .then((data) => {
-        console.log(data)
         this.suppliers = data
       })
       .catch()

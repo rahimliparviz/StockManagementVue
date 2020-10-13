@@ -207,7 +207,6 @@ export default {
           this.$notificationsuccess();
         })
         .catch(error => {
-          console.log(error);
           this.errors = error.data.errors;
         });
     }

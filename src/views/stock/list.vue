@@ -92,9 +92,7 @@ export default {
   methods: {
     allProduct() {
       this.$agent.Product.list()
-        // axios.get('/api/product/')
         .then(data => {
-          // console.log(data)
           this.products = data;
         })
         .catch();

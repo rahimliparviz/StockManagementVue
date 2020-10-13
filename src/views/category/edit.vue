@@ -97,7 +97,6 @@
                     })
                     .catch(error => {
                         this.errors = error.data.errors
-                        console.log(this.errors)
                     })
             },
         }

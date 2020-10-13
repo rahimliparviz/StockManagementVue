@@ -226,7 +226,6 @@ export default {
     let id = this.$route.params.id;
     this.$agent.Product.details(id)
       .then(data => {
-        console.log(data);
         this.form = data;
       })
       .catch(console.log("error"));

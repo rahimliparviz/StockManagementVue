@@ -80,7 +80,6 @@ export default {
   methods: {
     viewSalary() {
       let month = this.$route.params.month;
-      console.log(this.$route.params)
       this.$agent.Salary.view(month)
         .then(data => (this.salaries = data))
         .catch(error => (this.errors = error.data.errors));

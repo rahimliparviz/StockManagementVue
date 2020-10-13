@@ -104,7 +104,6 @@ export default {
     let id = this.$route.params.id;
     this.$agent.Salary.edit(id)
       .then(data => {
-        console.log(data)
         this.form = data
         })
       .catch(console.log("error"));
@@ -112,14 +111,12 @@ export default {
 
   methods: {
     salaryUpdate() {
-      console.log(this.form)
       this.$agent.Salary.update(this.form)
         .then(() => {
           this.$router.push({ name: "salaries" });
           this.$notificationsuccess();
         })
         .catch(error => {
-          console.log(error)
           this.errors = error.data.errors
         });
     }

@@ -83,9 +83,6 @@
     },
     computed:{
       searchFilter(){
-
-        // let a = this.products.map(p=>p.photo= process.env.VUE_APP_API_URL+p.photo);
-        // console.log(a)
       return this.products.filter(product => {
          return product.name.match(this.searchTerm)
       })

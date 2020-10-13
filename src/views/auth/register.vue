@@ -94,7 +94,6 @@ export default {
     register(){
           this.$store.dispatch('register', {form:this.form,router:this.$router})
           .then(response => {}, error => {
-            console.log(error)
                 this.errors = error.data.errors;
             })
     },

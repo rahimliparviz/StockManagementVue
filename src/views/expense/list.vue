@@ -81,7 +81,6 @@ export default {
     allExpense() {
       this.$agent.Expense.list()
         .then(data => {
-            console.log(data)
             this.expenses = data})
         .catch();
     },

@@ -129,9 +129,7 @@ export default {
 
   methods: {
     salaryPaid() {
-      console.log(this.form);
       this.$agent.Salary.pay(this.form)
-        //  axios.post('/api/salary/paid/'+id,this.form)
         .then(() => {
           this.$router.push({ name: "given-salary" });
           this.$notificationsuccess();

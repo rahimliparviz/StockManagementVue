@@ -14,7 +14,6 @@
         <!-- Area Chart -->
         <div class="col-xl-5 col-lg-5">
           <div class="card mb-4">
-        
             <div class="table-responsive" style="font-size: 12px;">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
@@ -83,7 +82,11 @@
               <form @submit.prevent="submitOrder">
                 <label>Customer Name</label>
                 <select class="form-control" v-model="customerId">
-                  <option :value="customer.id" :key="customer.id" v-for="customer in customers">{{customer.name }}</option>
+                  <option
+                    :value="customer.id"
+                    :key="customer.id"
+                    v-for="customer in customers"
+                  >{{customer.name }}</option>
                 </select>
 
                 <label>Pay</label>
@@ -201,7 +204,11 @@
                   >
                     <button class="btn btn-sm" @click.prevent="addToCart(categoryProduct)">
                       <div class="card" style="width: 8.5rem; margin-bottom: 5px;">
-                        <img :src="$api_url + categoryProduct.photo" id="photo" class="card-img-top" />
+                        <img
+                          :src="$api_url + categoryProduct.photo"
+                          id="photo"
+                          class="card-img-top"
+                        />
                         <div class="card-body">
                           <h6 class="card-title">{{ categoryProduct.name }}</h6>
                           <span
@@ -236,10 +243,10 @@ export default {
   },
   data() {
     return {
-      customerId: "1",
+      customerId: "",
       pay: "5",
       due: "1",
-      payBy: "",
+      payBy: "HandCash",
       products: [],
       categories: "",
       categoryProducts: [],
@@ -258,12 +265,8 @@ export default {
       });
     },
     categoryProductSearch() {
-console.log(this.categoryProducts)
-
       return this.categoryProducts.filter(categoryProduct => {
-        return categoryProduct.name.match(
-          this.categoryProductSearchTerm
-        );
+        return categoryProduct.name.match(this.categoryProductSearchTerm);
       });
     },
     productsQuantity() {
@@ -288,9 +291,9 @@ console.log(this.categoryProducts)
     // Cart Methods Here
     addToCart(product) {
       if (this.orderProducts.some(p => p.id == product.id)) {
-        this.$notificationitemExist("Product");
+        this.$notification.itemExist("Product");
       } else if (product.quantity == 0) {
-        this.$notificationstockOutForProduct(product.product_name);
+        this.$notification.stockOutForProduct(product.name);
       } else {
         product.selected_quantity = 0;
         this.orderProducts.push(product);
@@ -345,17 +348,19 @@ console.log(this.categoryProducts)
         priceWithVat: priceWithVat,
         orderProducts: this.orderProducts
       };
-    
+
       if (this.orderProducts.length < 1) {
-        this.$notificationwarning("You have to select at least on product");
+        this.$notification.warning("You have to select at least on product");
+      } else if (this.customerId == "") {
+        this.$notification.warning("You have to select a customer");
       } else {
         this.$agent.Order.submitOrder(data)
           .then(res => {
-            if (res.status == "success") {
+            if (res.isSuccess) {
               this.resetData();
-              this.$notificationsuccess();
+              this.$notification.success();
             } else {
-              this.$notificationwarning();
+              this.$notification.warning();
             }
           })
           .catch(error => (this.errors = error.data.errors));
@@ -393,10 +398,7 @@ console.log(this.categoryProducts)
         .catch(e => console.log(e));
     },
     getCategoryProducts(id) {
-      this.categoryProducts = this.products.filter(
-        pro => pro.categoryId == id
-      )
-
+      this.categoryProducts = this.products.filter(pro => pro.categoryId == id);
     }
   }
 };

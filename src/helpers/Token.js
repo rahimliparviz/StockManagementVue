@@ -4,11 +4,20 @@ class Token{
      const payload = this.payload(token)
      if (payload) {
          //burda yoxlayiriqki bu token asagidaki url den gelib ya yox
-       return payload.iss = "http://127.0.0.1:8000/api/auth/login" || "http://127.0.0.1:8000/api/auth/register" ? true : false
+       return  true 
      }
      return false
     }
    
+    userType(token){
+      const payload = this.payload(token)
+
+      if (payload) {
+        return payload.typ;
+      }
+
+      return '';
+    }
    
     payload(token){
      const payload = token.split('.')[1]
@@ -23,4 +32,4 @@ class Token{
    
    }
    
-   export default Token = new Token()
+   export default  new Token()

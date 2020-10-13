@@ -2,11 +2,11 @@ import Noty from 'noty'
 
 class Notification{
 
-    success(){
-        new Noty({
+    success(msg){
+    new Noty({
       type: 'success',
       layout: 'topRight',
-      text: 'Successfully Done!',
+      text: msg ?? 'Successfully Done!',
       timeout: 1000,
          }).show();
     }

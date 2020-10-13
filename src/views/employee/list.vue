@@ -86,7 +86,6 @@ export default {
     allEmployee() {
       this.$agent.Employee.list()
         .then(data => {
-            console.log(data)
           this.employees = data;
         })
         .catch();

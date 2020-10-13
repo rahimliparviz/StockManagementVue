@@ -105,7 +105,6 @@ export default {
 
   methods: {
     searchDate() {
-        console.log(this.date)
         this.$agent.Order.listByDate(this.date)
         .then(data => (this.orders = data))
         .catch(error => (this.errors = error.data.errors));
